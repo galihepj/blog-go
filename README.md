@@ -6,6 +6,7 @@ blog dengan menggunakan pemrograman go sebagai backend.
 #Kontributor
 - Galih E. P. J. = Kontributor
 - Galang G. F = kontributor
+- Faisal M = konstributor
 - test 2
 
 #Menjalankan
