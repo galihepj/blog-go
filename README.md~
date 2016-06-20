@@ -8,8 +8,3 @@ blog dengan menggunakan pemrograman go sebagai backend.
 - Galang G. F = kontributor
 - test 2
 
-#Menjalankan
-- Pastikan anda menset GOPATH dengan benar
-- Import database menggunakan mysql
-- Kemudian jalankan dengan perintah $go run main.go
-- Akses dari browser http://localhost:9000
