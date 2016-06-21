@@ -1,5 +1,5 @@
 package main
-import _ "image/png"
+
 import (
 	"database/sql"  // Database SQL package to perform queries
 	"log"           // Display messages to console
@@ -8,6 +8,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql" // MySQL Database driver
 )
+
 
 // Struct used to send data to template
 // this struct is the same as the database
@@ -44,7 +45,7 @@ var tmpl = template.Must(template.ParseGlob("tmpl/*"))
 
 /////// Function Fiew shows all values on home
 func Index(w http.ResponseWriter, r *http.Request) {
-
+	
 	// (View the file: `tmpl/Index`
 	tmpl.ExecuteTemplate(w, "Index", nil)
 
@@ -280,6 +281,8 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
 	// Show on console the application stated
 	log.Println("Server started on: http://localhost:9000")
