@@ -1,5 +1,5 @@
 package main
-
+import _ "image/png"
 import (
 	"database/sql"  // Database SQL package to perform queries
 	"log"           // Display messages to console
@@ -38,11 +38,21 @@ func dbConn() (db *sql.DB) {
 	return db
 }
 
+
 // Read all templates on folder `tmpl/*`
 var tmpl = template.Must(template.ParseGlob("tmpl/*"))
 
-// Function Index shows all values on home
+/////// Function Fiew shows all values on home
 func Index(w http.ResponseWriter, r *http.Request) {
+
+	// (View the file: `tmpl/Index`
+	tmpl.ExecuteTemplate(w, "Index", nil)
+
+}
+
+
+// Function Fiew shows all values on home
+func View(w http.ResponseWriter, r *http.Request) {
 	// Open database connection
 	db := dbConn()
 
@@ -82,7 +92,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 	// Execute template `Index` from `tmpl/*` folder and send the struct
 	// (View the file: `tmpl/Index`
-	tmpl.ExecuteTemplate(w, "Index", res)
+	tmpl.ExecuteTemplate(w, "View", res)
 
 	// Close database connection
 	defer db.Close()
@@ -124,7 +134,9 @@ func Show(w http.ResponseWriter, r *http.Request) {
 		n.Email = email
 
 	}
-
+	
+	
+	
 	// Execute template `Show` from `tmpl/*` folder and send the struct
 	// (View the file: `tmpl/Show`)
 	tmpl.ExecuteTemplate(w, "Show", n)
@@ -275,6 +287,7 @@ func main() {
 	// URL management
 	// Manage templates
 	http.HandleFunc("/", Index)    // INDEX :: Show all registers
+	http.HandleFunc("/view", View) // INDEX :: Show all registers
 	http.HandleFunc("/show", Show) // SHOW  :: Show only one register
 	http.HandleFunc("/new", New)   // NEW   :: Form to create new register
 	http.HandleFunc("/edit", Edit) // EDIT  :: Form to edit register
