@@ -248,7 +248,7 @@ func Insert(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	// Redirect to HOME
-	http.Redirect(w, r, "/", 301)
+	http.Redirect(w, r, "/viewadmin", 301)
 }
 
 // Function Update, update values from database,
@@ -280,7 +280,7 @@ func Update(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	// Redirect to Home
-	http.Redirect(w, r, "/", 301)
+	http.Redirect(w, r, "/viewadmin", 301)
 }
 
 // Function Delete destroys a row based on ID
@@ -306,7 +306,7 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	// Redirect a HOME
-	http.Redirect(w, r, "/", 301)
+	http.Redirect(w, r, "/viewadmin", 301)
 }
 
 
@@ -393,7 +393,8 @@ func main() {
 	http.HandleFunc("/login", Login) // INDEX :: Show all registers
 	http.HandleFunc("/logout", Logout) // INDEX :: Show all registers
 	http.HandleFunc("/admin", Indexadmin)    // INDEX :: Show all registers
-	http.HandleFunc("/viewadmin", ViewAdmin) // INDEX :: Show all registers
+	http.HandleFunc("/viewadmin", ViewAdmin) // INDEX :: Show all registers 
+	http.HandleFunc("/showadmin", ShowAdmin) // INDEX :: Show all registers
 	
 	// Manage actions
 	http.HandleFunc("/feriv", Feriv) // INSERT :: New register
@@ -455,5 +456,53 @@ func ViewAdmin(w http.ResponseWriter, r *http.Request) {
 	// Close database connection
 	defer db.Close()
 }
+// Function Show displays a single value
+func ShowAdmin(w http.ResponseWriter, r *http.Request) {
+	// Open database connection
+	db := dbConn()
+
+	// Get the URL `?id=X` parameter
+	nId := r.URL.Query().Get("id")
+
+	// Perform a SELECT query getting the register Id(See above) and check for errors
+	selDB, err := db.Query("SELECT * FROM names WHERE id=?", nId)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	// Call the struct to be rendered on template
+	n := Names{}
+
+	// Read all rows from database
+	// This time we are going to get only one value, doesn't need the slice
+	for selDB.Next() {
+		// Store query values on this temporary variables
+		var id int
+		var name, email string
+
+		// Scan each row to match the ID and check for errors
+		err = selDB.Scan(&id, &name, &email)
+		if err != nil {
+			panic(err.Error())
+		}
+
+		// Get the Scan into the Struct
+		n.Id = id
+		n.Name = name
+		n.Email = email
+
+	}
+	
+	
+	
+	// Execute template `Show` from `tmpl/*` folder and send the struct
+	// (View the file: `tmpl/Show`)
+	tmpl.ExecuteTemplate(w, "ShowAdmin", n)
+
+	// Close database connection
+	defer db.Close()
+
+}
+
 
 
