@@ -72,7 +72,7 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 	tmpl.ExecuteTemplate(w, "Index", nil)
 
 }
-///////33 Function Fiew shows all values on home
+///////22 Function Fiew shows all values on home
 func Indexadmin(w http.ResponseWriter, r *http.Request) {
 	
 	// (View the file: `tmpl/Index`
