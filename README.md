@@ -14,7 +14,8 @@ blog dengan menggunakan pemrograman go sebagai backend.
 - Import database menggunakan mysql
 - Kemudian jalankan dengan perintah $go run main.go
 - Akses dari browser http://localhost:9000
+- Template Bootstrap Online
 
-- Login with 
+##Login with 
 - E-mail  : admin@gmail.com
-- password: addmin
+- password: admin
