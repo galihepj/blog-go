@@ -6,7 +6,7 @@ blog dengan menggunakan pemrograman go sebagai backend.
 #Kontributor
 - Galih E. P. J. = Kontributor
 - Galang G. F = kontributor
-- Faisal M = konstributor
+- Faisal M = kontributor
 - test 2
 
 #Menjalankan
@@ -14,3 +14,7 @@ blog dengan menggunakan pemrograman go sebagai backend.
 - Import database menggunakan mysql
 - Kemudian jalankan dengan perintah $go run main.go
 - Akses dari browser http://localhost:9000
+
+- Login with 
+- E-mail  : admin@gmail.com
+- password: addmin
