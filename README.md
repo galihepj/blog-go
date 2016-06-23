@@ -22,5 +22,5 @@ web dengan menggunakan pemrograman go sebagai backend dan css-bootstrap sebagai 
 - password: admin
 
 ##Akses
-- Aplikasi ini bisa di akses dari golang-epj99.rhcloud.com
+- Aplikasi ini bisa di akses dari http://golang-epj99.rhcloud.com
 - https://github.com/galihepj/blog-go
