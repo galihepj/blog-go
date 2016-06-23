@@ -1,7 +1,7 @@
 #Membangun Aplikasi Blog dengan Go
 
 Aplikasi ini merupakan aplikasi yang ditujukan untuk mengembangkan
-web dengan menggunakan pemrograman go sebagai backend dan html-css sebagai frontend.
+web dengan menggunakan pemrograman go sebagai backend dan css-bootstrap sebagai frontend.
 
 #Kontributor
 - Galih E. P. J. = Kontributor
